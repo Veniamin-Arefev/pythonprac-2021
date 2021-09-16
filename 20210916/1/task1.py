@@ -1,1 +1,2 @@
-print('lolkek')
+a, b, c = eval(input())
+print()
