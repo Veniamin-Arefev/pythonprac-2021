@@ -1,0 +1,5 @@
+:cos x y cos(x+y)
+cos 1 2
+:hello "Hello!!!"
+hello
+quit всё

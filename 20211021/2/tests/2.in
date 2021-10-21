@@ -1,0 +1,5 @@
+:sin x y k z sin(x+y+k+z)
+sin 1 2 3 4
+:decorate s "--<<{}>>--".format(s)
+decorate "ЖЖЖ"
+quit всё
