@@ -1,0 +1,5 @@
+it = 0
+for i in slide(itertools.count(0), 5):
+    print(i, end=" ")
+    if (it := it +1) > 50:
+        break
