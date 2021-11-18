@@ -1,0 +1,7 @@
+class A:
+        num = Num()
+
+print(A().num)
+a, b = A(), A()
+a.num, b.num = 12,"123"
+print(a.num+b.num)

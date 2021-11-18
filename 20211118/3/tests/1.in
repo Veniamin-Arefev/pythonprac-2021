@@ -1,0 +1,3 @@
+alp = Alpha(c=10, z=2, a=42)
+alp.e = 123
+print(alp)
