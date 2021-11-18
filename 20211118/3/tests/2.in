@@ -1,0 +1,28 @@
+import random
+
+
+def timer(func):
+    import time
+    def timed(*args, **kw):
+        start = time.time()
+        result = func(*args, **kw)
+        te = time.time()
+        print(f"{func.__name__} worked for {time.time() - start:0.5f} seconds")
+        return result
+
+    return timed
+
+
+alp = Alpha(c=10, z=2, a=42)
+alq = AlphaQ(c=10, z=2, a=42)
+
+
+@timer
+def work(alpha, count, seed=42):
+    random.seed(seed)
+    for i in range(count):
+        setattr(alpha, random.choice(ascii_lowercase), random.randint(228, 1337 + 100500))
+
+iter = 100000
+work(alp, iter)
+work(alq, iter)

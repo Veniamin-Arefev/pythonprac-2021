@@ -1,0 +1,13 @@
+alp = Alpha(c=10, z=2, a=42)
+alq = AlphaQ(c=10, z=2, a=42)
+try:
+    alp.q
+except Exception as e:
+    print(type(e))
+    print(e)
+
+try:
+    alq.q
+except Exception as e:
+    print(type(e))
+    print(e)

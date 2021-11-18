@@ -1,0 +1,4 @@
+<class 'AttributeError'>
+'Alpha' object has no attribute 'q'
+<class 'AttributeError'>
+Attribute not found
