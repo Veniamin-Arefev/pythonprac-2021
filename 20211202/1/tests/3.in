@@ -1,0 +1,10 @@
+class C(metaclass=dump):
+    def __init__(self, string):
+        self.val = string
+
+    def __add__(self, other):
+        return (self.val + other.val)
+
+
+a, b = C("plus"), C("minus")
+print(a + b)

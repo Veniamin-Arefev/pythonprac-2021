@@ -1,0 +1,8 @@
+class C(metaclass=check):
+    A: str = "HEHE"
+    B: int
+
+c = C()
+print(c.check_annotations())
+c.B = type("Boo",(str,),{})(42)
+print(c.check_annotations())

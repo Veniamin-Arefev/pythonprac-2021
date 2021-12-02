@@ -1,0 +1,4 @@
+__init__: ('plus',), {}
+__init__: ('minus',), {}
+__add__: (<__main__.C object at 0x7f9138568eb0>,), {}
+plusminus
