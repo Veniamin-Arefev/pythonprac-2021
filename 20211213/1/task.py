@@ -1,10 +1,6 @@
-import random
 import asyncio
-import math
 
-random.shuffle(L := [*range(32)])
-LL = L.copy()
-
+LL = []
 
 async def merge(start1, start2, stop2, *, left_event, right_event, end_event):
     # print(f"wait for {(start1, start2)} and {(start2, stop2)}")
@@ -30,10 +26,6 @@ async def merge(start1, start2, stop2, *, left_event, right_event, end_event):
 
 
 async def joiner():
-    old_len, new_len = len(L), pow(2, math.ceil(math.log2(len(L))))
-    if (new_len > old_len):
-        L.extend([0 for i in range(new_len - old_len)])
-        print(len(L))
     events = {(i, i + 2 ** (p),): asyncio.Event()
               for p in range(5)
               for i in range(0, len(L), 2 ** (p))}
@@ -59,5 +51,6 @@ async def joiner():
 
 
 L = eval(input())
+LL = L.copy()
 asyncio.run(joiner())
 print(L)
