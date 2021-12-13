@@ -1,9 +1,7 @@
-import random
 import asyncio
 import math
 
-random.shuffle(L := [*range(32)])
-LL = L.copy()
+LL = []
 
 
 async def merge(start1, start2, stop2, *, left_event, right_event, end_event):
@@ -30,32 +28,33 @@ async def merge(start1, start2, stop2, *, left_event, right_event, end_event):
 
 
 async def joiner():
-    old_len, new_len = len(L), pow(2, math.ceil(math.log2(len(L))))
+    degree = math.ceil(math.log2(len(L)))
+    old_len, new_len = len(L), pow(2, degree)
     if (new_len > old_len):
         L.extend([0 for i in range(new_len - old_len)])
-        print(len(L))
-    events = {(i, i + 2 ** (p),): asyncio.Event()
-              for p in range(5)
-              for i in range(0, len(L), 2 ** (p))}
+    global LL
+    LL = L.copy()
+    events = {(i, i + 2 ** (degr),): asyncio.Event()
+              for degr in range(degree + 1)
+              for i in range(0, len(L), 2 ** (degr))}
     # print(events.keys())
     tasks = []
-    for p in range(4):
-        b = 2 ** (p + 1)
+    for degr in range(1, degree + 1):
+        b = 2 ** degr
         for i in range(0, len(L), b):
             tasks.append(asyncio.create_task(merge(i, i + b // 2, i + b,
                                                    left_event=events[(i, i + b // 2,)],
                                                    right_event=events[(i + b // 2, i + b,)],
                                                    end_event=events[(i, i + b,)])))
-            # left_event=(i, i + b // 2,),
-            # right_event=(i, i + b,),
-            # end_event=(i, i + b,))))
             # print(i, i + b // 2, i + b)
 
     for i in range(0, len(L), 2):
         events[(i, i + 1,)].set()
         events[(i + 1, i + 2,)].set()
-        # print(i, i + 1, i + 2)
     await asyncio.gather(*tasks)
+    if (new_len > old_len):
+        for i in range(new_len - old_len):
+            L.remove(0)
 
 
 L = eval(input())
