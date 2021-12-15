@@ -1,1 +1,1 @@
-(rand := __import__("random"), [rand.randint(-100, 100) for i in range(48)])[1]
+(rand := __import__("random"),rand.seed("Teskiti testiki, veselo veselo"), [rand.randint(-100, 100) for i in range(48)])[2]

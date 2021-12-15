@@ -1,1 +1,1 @@
-(rand := __import__("random"), sorted([rand.randint(-100, 100) for i in range(16)], reverse=True))[1]
+(rand := __import__("random"), rand.seed("Taki testik"), sorted([rand.randint(-100, 100) for i in range(16)], reverse=True))[2]

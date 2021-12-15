@@ -1,1 +1,1 @@
-(rand := __import__("random"), [rand.randint(-100, 100) for i in range(1000)])[1]
+(rand := __import__("random"), rand.seed("Easter egg found!"), [rand.randint(-100, 100) for i in range(1000)])[2]
