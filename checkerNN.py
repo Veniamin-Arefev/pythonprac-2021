@@ -45,11 +45,6 @@ TMOUT: float = 1
 MAXDIFF: int = 80
 
 # XXX check if subprocess dies first
-try:
-    import resource
-    resource.setrlimit(resource.RLIMIT_AS, (RLIMIT_AS, 3*RLIMIT_AS//2))
-except:
-    print("Warning: running with no memory limits", file=sys.stderr)
 
 _ToDelete: str = mkdtemp()
 

@@ -17,9 +17,12 @@ def triangleSquare(string):
         (x1, y1), (x2, y2), (x3, y3) = eval(string)
     except Exception as e:
         raise InvalidInput
-    sides = [((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5, ((x2 - x3) ** 2 + (y2 - y3) ** 2) ** 0.5,
-             ((x1 - x3) ** 2 + (y1 - y3) ** 2) ** 0.5]
-    area_square = ((p := sum(sides) / 2) * (p - sides[0]) * (p - sides[1]) * (p - sides[2])) ** 0.5
+    try:
+        sides = [((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5, ((x2 - x3) ** 2 + (y2 - y3) ** 2) ** 0.5,
+                 ((x1 - x3) ** 2 + (y1 - y3) ** 2) ** 0.5]
+        area_square = ((p := sum(sides) / 2) * (p - sides[0]) * (p - sides[1]) * (p - sides[2])) ** 0.5
+    except Exception as e:
+        raise BadTriangle
     if area_square.imag != 0 or area_square.real <= 0:
         raise BadTriangle
     else:

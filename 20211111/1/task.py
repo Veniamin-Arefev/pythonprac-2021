@@ -12,7 +12,7 @@ class OrderedComplex(complex):
 
 class OrderedComplexMul(OrderedComplex):
     def __matmul__(self, other):
-        return self.real * other.real + self.imagine * other.imagine
+        return float(self.real * other.real + self.imagine * other.imagine)
 
 
 

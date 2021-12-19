@@ -3,4 +3,4 @@ sin 1
 :decorate s "--<<{}>>--".format(s)
 decorate "ЖЖЖ"
 sin 2
-quit всё
+quit "{}:{}"

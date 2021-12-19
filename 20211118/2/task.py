@@ -3,7 +3,7 @@ class Num:
         return getattr(instance, "_val", 0)
 
     def __set__(self, instance, value):
-        instance._val = re if (re := getattr(value, "real", None)) is not None else len(value)
+        instance._val = value if (hasattr(value, "real")) else len(value)
 
 
 import sys

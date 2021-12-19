@@ -5,6 +5,8 @@ class C(metaclass=dump):
     def __add__(self, other):
         return (self.val + other.val)
 
+    def __repr__(self):
+        return f"{self.val}"
 
 a, b = C("plus"), C("minus")
 print(a + b)

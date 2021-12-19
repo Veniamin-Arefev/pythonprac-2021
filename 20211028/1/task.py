@@ -14,4 +14,6 @@ def fib(m, n):
     yield from itertools.islice(my_fib(), m, n + 1)
 
 
-print(", ".join([str(i) for i in fib(2, 4)]))
+import sys
+
+exec(sys.stdin.read())

@@ -1,7 +1,7 @@
 def digit_count(x):
     digit_sum = 0
     while x:
-        digit_sum = x % 10
+        digit_sum += x % 10
         x //= 10
     return digit_sum
 

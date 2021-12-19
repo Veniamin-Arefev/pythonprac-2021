@@ -1,4 +1,5 @@
 __init__: ('geg',), {}
 __init__: ('kek',), {}
-__add__: (<__main__.C object at 0x7f1786361eb0>,), {}
+__repr__: (), {}
+__add__: (kek,), {}
 gegkek

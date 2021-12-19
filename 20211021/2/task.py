@@ -14,4 +14,4 @@ while a := input():
         print(eval(my_fun[my_list[0]][-1], math.__dict__,
                    {my_fun[my_list[0]][ind]: eval(my_list[1 + ind]) for ind in range(len(my_list) - 1)}))
     calculated += 1
-print("{}:{}".format(calculated + 1, len(my_fun) + 1))
+print(("{}:{}" if len(my_list) < 2 else eval(my_list[1])).format(len(my_fun) + 1, calculated + 1))

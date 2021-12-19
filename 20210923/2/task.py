@@ -1,6 +1,7 @@
 my_sum = 0
-while a := int(input()):
-    if a > 0 and my_sum <= 21:
+while my_sum <= 21:
+    a = int(input())
+    if a > 0:
         my_sum += a
     else:
         break

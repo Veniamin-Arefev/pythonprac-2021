@@ -1,4 +1,4 @@
 <class 'AttributeError'>
-'Alpha' object has no attribute 'q'
+q
 <class 'AttributeError'>
-Attribute not found
+

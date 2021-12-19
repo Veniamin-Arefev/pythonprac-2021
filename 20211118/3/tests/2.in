@@ -1,21 +1,16 @@
 import random
-
+from string import ascii_lowercase
 
 def timer(func):
     import time
     def timed(*args, **kw):
         start = time.time()
         result = func(*args, **kw)
-        te = time.time()
-        print(f"{func.__name__} worked for {time.time() - start:0.5f} seconds")
-        return result
-
+        return time.time() - start
     return timed
-
 
 alp = Alpha(c=10, z=2, a=42)
 alq = AlphaQ(c=10, z=2, a=42)
-
 
 @timer
 def work(alpha, count, seed=42):
@@ -24,5 +19,6 @@ def work(alpha, count, seed=42):
         setattr(alpha, random.choice(ascii_lowercase), random.randint(228, 1337 + 100500))
 
 iter = 100000
-work(alp, iter)
-work(alq, iter)
+a = work(alp, iter)
+b = work(alq, iter)
+print(a < b)

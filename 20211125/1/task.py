@@ -5,7 +5,7 @@ inp = sys.stdin.buffer.read()
 parts = []
 
 for i in range(inp[0]):
-    parts.append(inp[int(i * (len(inp) - 1) / inp[0]):int((i + 1) * (len(inp) - 1) / inp[0])])
+    parts.append(inp[1:][int(i * len(inp[1:]) / inp[0]):int((i + 1) * len(inp[1:]) / inp[0])])
 
 parts.sort()
 
