@@ -35,6 +35,7 @@ def parse_obj(id: str, intendant: int):
                     if new_kind == 'tree':
                         parse_obj(new_id, intendant)
                     elif new_kind == 'parent':
+
                         pass
                         # parse_obj(new_id, intendant + intendant_step)
                         # break
