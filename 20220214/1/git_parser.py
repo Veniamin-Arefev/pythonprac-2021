@@ -1,3 +1,4 @@
+import argparse
 import os
 import zlib
 import sys
@@ -12,7 +13,21 @@ except BaseException as e:
     exit(0)
 
 prefix = '.git'
-intendant_step = 2
+commit_step = 2
+tree_step = 2
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-b', '--blob',
+                    action='store_true',
+                    help='Print all blobs info',
+                    )
+parser.add_argument('-t', '--tree',
+                    action='store_true',
+                    help='Parse all tree object recursive',
+                    )
+
+args = parser.parse_args()
+print(args)
 
 
 def parse_obj(id: str, intendant: int):
@@ -35,7 +50,7 @@ def parse_obj(id: str, intendant: int):
                     if new_kind == 'tree':
                         parse_obj(new_id, intendant)
                     elif new_kind == 'parent':
-                        parse_obj(new_id, intendant + intendant_step)
+                        parse_obj(new_id, intendant + commit_step)
                         break
                 except ValueError:
                     break
@@ -44,8 +59,14 @@ def parse_obj(id: str, intendant: int):
                 treehdr, _, tail = body.partition(b'\x00')
                 gitid, body = tail[:20], tail[20:]
                 print(f'{pref}{treehdr}, {gitid.hex()}')
+                if args.tree:
+                    parse_obj(gitid.hex(), intendant + tree_step)
         elif kind == b'blob':
-            print(f'{pref}There must be info about blob')
+            if (args.blob):
+                print(body.decode())
+            else:
+                pass
+                # print(f'{pref}There must be info about blob')
         else:
             print(f'{pref}{Fore.RED}ERROR TYPE{Fore.RESET}')
 
@@ -65,27 +86,4 @@ else:
 with open(join(prefix, 'refs', 'heads', branch_name), 'r') as file:
     commit_id = file.read().strip()
 
-# repo_path = join(repo, 'objects', '??', '*')
-
-# for obj_name in iglob(repo_path):
-# obj_name = join(prefix, 'objects', commit_id[:2], commit_id[2:])
-# print(Fore.GREEN, obj_name, Fore.RESET, sep='')
-
 parse_obj(commit_id, 0)
-
-# with open(obj_name, 'rb') as file:
-#     full_obj = zlib.decompress(file.read())
-#     header, _, body = full_obj.partition(b'\x00')
-#     kind, size = header.split()
-#     print(f'{Fore.BLUE}Type : {kind.decode():8} with {int(size):5} bytes{Fore.RESET}')
-#     if kind == b'commit':
-#         print(body.decode())
-#     elif kind == b'tree':
-#         while body:
-#             treehdr, _, tail = body.partition(b'\x00')
-#             gitid, body = tail[:20], tail[20:]
-#             print(f'\t{treehdr}, {gitid.hex()}')
-#     elif kind == b'blob':
-#         print('There must be info about blob')
-#     else:
-#         print(Fore.RED, 'ERROR TYPE', Fore.RESET)
