@@ -34,7 +34,6 @@ if __name__ == '__main__':
                             )
         return parser.parse_args()
 
-
     sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
     args = parse_args()
 
