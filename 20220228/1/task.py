@@ -19,6 +19,9 @@ my_pool = multiprocessing.pool.Pool(1)
 
 process = my_pool.apply_async(dist, args=((str1, str2, str3)))
 
-result = process.get()
+try:
+    result = process.get(1)
+except BaseException as e:
+    result = -1
 
 print(result)
