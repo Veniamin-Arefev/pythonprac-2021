@@ -1,4 +1,4 @@
-DOIT_CONFIG = {'default_tasks': ['babel', 'test', 'wheel', 'sdist', 'cleanup']}
+DOIT_CONFIG = {'default_tasks': ['babel', 'test', 'wheel', 'sdist']}
 domain = "task"
 podir = "task"
 
@@ -17,7 +17,6 @@ def task_test():
     """Run tests"""
     return {
         "actions": ["python3 -m unittest -v"],
-        # "file_dep": ["task.py", "test.py"]
     }
 
 def task_wheel():

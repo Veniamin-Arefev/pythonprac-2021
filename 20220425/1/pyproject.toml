@@ -1,8 +1,8 @@
 [build-system]
-requires = ["setuptools", "build", "wheel"]
+requires = ["setuptools", "build", "wheel", "babel", "pyfiglet", "doit", "coverage"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "task"
-version = "0.1"
+version = "1.0"
 dependencies = ["pyfiglet",]
